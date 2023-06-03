@@ -1,4 +1,4 @@
-name: Clean cloud CI/CD Basic Build
+name: Clean cloud CI/CD Step 3 Build and Test
 
 on:
   push:
@@ -7,11 +7,21 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x]
     steps:
-      - name: Hello world from clean cloud
-        run: echo "hello world"
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: A future implementation of a build stage
+        run: echo "run build"
