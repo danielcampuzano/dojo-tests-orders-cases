@@ -14,4 +14,4 @@ jobs:
         node-version: [14.x]
     steps:
       - name: Hello world from clean cloud
-        run: echo "hello world
+        run: echo "hello world"
